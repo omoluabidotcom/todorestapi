@@ -68,23 +68,26 @@ class User{
     // method to create new record and add it to databse records
     public function create() {
 
-      $query = 'INSERT INTO'
-                  . $this->table . 
-               'SET
-                  firstname = :firstname
-                  lastname = :lastname
-                  email = :email
+      $query = 'INSERT INTO
+                  ' . $this->table . '
+                SET
+                  firstname = :firstname,
+                  lastname = :lastname,
+                  password = :password,
+                  email = :email,
                   number = :number';
       
       $stmt = $this->conn->prepare($query);
 
       $this->firstname = htmlspecialchars(strip_tags($this->firstname));
       $this->lastname = htmlspecialchars(strip_tags($this->lastname));
+      $this->password = htmlspecialchars(strip_tags($this->password));
       $this->email = htmlspecialchars(strip_tags($this->email));
       $this->number = htmlspecialchars(strip_tags($this->number));
       
       $stmt->bindParam(':firstname', $this->firstname);
       $stmt->bindParam(':lastname', $this->lastname);
+      $stmt->bindParam(':password', $this->password);
       $stmt->bindParam(':email', $this->email);
       $stmt->bindParam(':number', $this->number);
 
@@ -100,9 +103,9 @@ class User{
     // method to update database record 
     public function update() {
 
-      $query = 'UPDATE'
-                  . $this->table . 
-                'SET 
+      $query = 'UPDATE 
+                  ' . $this->table . '
+                SET 
                   firstname = :firstname,
                   lastname = :lastname,
                   email = :email,
@@ -112,6 +115,7 @@ class User{
 
       $stmt = $this->conn->prepare($query);
       
+      $this->id = htmlspecialchars(strip_tags($this->id));
       $this->firstname = htmlspecialchars(strip_tags($this->firstname));
       $this->lastname = htmlspecialchars(strip_tags($this->lastname));
       $this->email = htmlspecialchars(strip_tags($this->email));
@@ -135,9 +139,9 @@ class User{
     // method to delete from database record
     public function delete() {
 
-      $query = 'DELETE FROM '
-                  . $this->table . 
-                'WHERE 
+      $query = 'DELETE FROM 
+                  ' . $this->table . '
+                WHERE 
                   id = :id';
       
       $stmt = $this->conn->prepare($query);
