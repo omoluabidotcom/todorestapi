@@ -4,15 +4,15 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
 require '../../config/Database.php';
-require '../../models/User.php';
+require '../../models/Task.php';
 
 $instandb = new Database();
 $db = $instandb->connect();
 
 $rest = new resthandler();
 
-$instanuser = new User($db);
-$result = $instanuser->read();
+$instantodo = new Task($db);
+$result = $instantodo->read();
 $num = $result->rowCount();
 
 if ($num > 0) {
@@ -25,15 +25,13 @@ if ($num > 0) {
 
         extract($data);
 
-        $user = array(
+        $todo = array(
             'id' => $id,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'email' => $email,
-            'number' => $number
+            'task' => $task,
+            'todo_id' => $todo_id
         );
         
-        array_push($response['body'], $user);
+        array_push($response['body'], $todo);
     }
 
     print_r(json_encode($response['body']));

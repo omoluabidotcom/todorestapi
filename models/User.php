@@ -26,6 +26,7 @@ class User{
     public function read() {
 
         $query = 'SELECT 
+                    id,
                     firstname,
                     lastname,
                     email,
@@ -44,6 +45,7 @@ class User{
     public function read_single() {
 
         $query = 'SELECT
+                    id,
                     firstname,
                     lastname,
                     email,
