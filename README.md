@@ -1,4 +1,4 @@
-# [TODO REST API PHP](https://github.com/omoluabidotcom/todorestapitodorestapi) 
+# [TODO REST API PHP](https://github.com/omoluabidotcom/todorestapi) 
 
 > This is a todo REST API created with
 > PHP; no framework was used in
